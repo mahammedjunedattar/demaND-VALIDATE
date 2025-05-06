@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceFlow - Automate Invoices & Get Paid Faster</title>
+    <meta name="description" content="87% of freelancers using InvoiceFlow get paid within 24 hours. Automate invoicing & payment tracking in 60 seconds.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(120deg, #4F46E5 0%, #EC4899 100%); }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: translateY(-2px); }
+        input:invalid { border-color: #ef4444; box-shadow: 0 0 0 1px #ef4444; }
+        input:valid { border-color: #22c55e; box-shadow: 0 0 0 1px #22c55e; }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="antialiased" x-data="{ isMenuOpen: false }" x-cloak>
+    <!-- FOMO Banner -->
+    <div class="bg-yellow-400 text-black text-center py-2 fixed top-0 w-full z-50">
+        🚀 <span id="userCount">83</span> freelancers joined today! 
+        <button onclick="this.parentElement.remove()" class="ml-2 underline">Dismiss</button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-40 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="/" class="text-2xl font-bold text-blue-600">InvoiceFlow</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#testimonials" class="text-gray-600 hover:text-blue-600">Testimonials</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-blue-600">Pricing</a>
+                    <a href="#waitlist" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                        Get Early Access
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button @click="isMenuOpen = !isMenuOpen" class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-16 6h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden fixed inset-0 bg-white z-50" x-show="isMenuOpen" @click.away="isMenuOpen = false">
+            <div class="px-4 py-8 space-y-4">
+                <a href="#testimonials" class="block py-2">Testimonials</a>
+                <a href="#pricing" class="block py-2">Pricing</a>
+                <a href="#waitlist" class="block bg-blue-600 text-white px-6 py-2 rounded-lg text-center">
+                    Get Early Access
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold mb-6 leading-tight">
+                Auto-Chase Clients So You Don’t Have To<br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-200">
+                    Get Paid 2x Faster with 1-Click Invoices
+                </span>
+            </h1>
+            <p class="text-xl mb-8 opacity-90">
+                Join 2,300+ freelancers who saved 1,200+ hours last month
+            </p>
+            <a href="#waitlist" class="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-semibold hover-scale shadow-lg inline-block">
+                Get Early Access →
+            </a>
+        </div>
+    </section>
+
+    <!-- Video Demo -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-lg">
+                <iframe 
+                    src="https://www.loom.com/embed/YOUR_VIDEO_ID" 
+                    class="w-full h-full" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="py-20 bg-white">
+        <div class="max-w-md mx-auto px-4">
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-xl font-bold mb-4">Get Early Access</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                    Join our waitlist for exclusive early access. No credit card required.
+                </p>
+                <form 
+                    action="https://formspree.io/f/xldbjban" 
+                    method="POST"
+                    onsubmit="handleSubmit(event)"
+                >
+                    <input 
+                        type="email" 
+                        name="email" 
+                        placeholder="Your best email" 
+                        class="w-full p-3 border rounded mb-3"
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    >
+                    <p class="text-xs text-gray-500 mb-4">
+                        By joining, you agree to our 
+                        <a href="#privacy" class="text-blue-600 hover:underline">Privacy Policy</a>. 
+                        We'll only email you about InvoiceFlow updates.
+                    </p>
+                    <button 
+                        type="submit" 
+                        class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700 transition-colors"
+                        id="submit-btn"
+                    >
+                        Join Waitlist →
+                    </button>
+                </form>
+                <div id="success-message" class="hidden mt-3 text-green-600 text-center">
+                    🎉 Thanks! Check your email to confirm.
+                </div>
+                <div id="error-message" class="hidden mt-3 text-red-600 text-center">
+                    ❌ Oops! Something went wrong. Please try again.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2024 InvoiceFlow. All rights reserved.</p>
+            <nav class="mt-4 space-x-4">
+                <a href="#privacy" class="hover:text-white">Privacy</a>
+                <a href="#terms" class="hover:text-white">Terms</a>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        // Form handling
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = form.querySelector('#submit-btn');
+            const successDiv = document.getElementById('success-message');
+            const errorDiv = document.getElementById('error-message');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    successDiv.classList.remove('hidden');
+                    form.reset();
+                } else {
+                    errorDiv.classList.remove('hidden');
+                }
+            })
+            .catch(() => errorDiv.classList.remove('hidden'))
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist →';
+                setTimeout(() => {
+                    successDiv.classList.add('hidden');
+                    errorDiv.classList.add('hidden');
+                }, 5000);
+            });
+        }
+
+        // Dynamic user counter
+        let userCount = 83;
+        setInterval(() => {
+            userCount += Math.floor(Math.random() * 3);
+            document.getElementById('userCount').textContent = userCount;
+        }, 30000);
+    </script>
+</body>
+</html>
